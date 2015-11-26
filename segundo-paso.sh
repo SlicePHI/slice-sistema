@@ -1,15 +1,9 @@
 #!/bin/bash
 
 # AUTOR: hefesto
-# Objetivo: Este script se utilizó para que el usuario pueda replicar el ambiente de producción localmente.
+# Objetivo: Continuación de primer-paso.sh
 # Manual de uso:
-# echo "Se necesitan hacer cambios a /etc/yum.repos.d/fedora.repo file y /etc/yum.repos.d/fedora-updates.repo correspondientemente:
-# [fedora]
-# ...
-# exclude=postgresql*
-# [updates]
-# ...
-# exclude=postgresql*"
+
 
 # echo 'Esto fue probado en fedora 23.'
 # sudo su -
@@ -17,19 +11,9 @@
 # ./primer-paso.sh
 # echo 'Sonreir sí y sólo sí se pudo instalar sin error.'
 
-################ Primer Paso ########################
+################ Secundo Paso ########################
 
-echo "dnf update"
-yum install --nogpgcheck http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
-dnf update -y
-
-echo "Instalando cosas..."
-dnf install zsh emacs tomcat vim nginx -y
-echo "Instalando postgres 9.4"
-rpm -Uvh http://yum.postgresql.org/9.4/fedora/fedora-22-x86_64/pgdg-fedora94-9.4-4.noarch.rpm
-dnf install postgresql94 postgresql94-server postgresql94-contrib
-su - postgres -c /usr/pgsql-9.4/bin/initdb
-
+echo "Continuando con la instalación de postgres 9.4"
 # Modificar archivo /var/lib/pgsql/9.4/data/postgresql.conf agregando:
 # listen_addresses = 'localhost'
 # port = 5432
